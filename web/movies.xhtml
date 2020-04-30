@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+    <ui:composition template="templates/common.xhtml">
+        <ui:define name="content">
+                <h:form>
+                <p:dataTable var="moviesentity" value="#{moviesView.movies}" style="width: 100%; text-align: center" rows="10"  paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             rowsPerPageTemplate="5,10,15">
+
+                    <p:column filterBy="#{moviesentity.cim}" headerText="Cím">
+                        <h:outputText value="#{moviesentity.cim}" rendered="#{moviesentity.id != moviesView.editedMovie.id}"/>
+                        <p:inputText value="#{moviesView.editedMovie.cim}" size="13"  rendered="#{moviesentity.id == moviesView.editedMovie.id}"/>
+                    </p:column>
+
+                    <p:column filterBy="#{moviesentity.datum}" headerText="Dátum">
+                        <h:outputText value="#{moviesentity.datum}" rendered="#{moviesentity.id != moviesView.editedMovie.id}">
+                            <f:convertDateTime pattern="yyyy.MM.dd" />
+                        </h:outputText>
+                        <p:inputMask value="#{moviesView.editedMovie.datum}" size="13" rendered="#{moviesentity.id == moviesView.editedMovie.id}" mask="9999.99.99">
+                            <f:convertDateTime pattern="yyyy.MM.dd"/>
+                        </p:inputMask>
+                    </p:column>
+
+                    <p:column filterBy="#{moviesentity.sorszam}" headerText="Sorszám">
+                        <h:outputText value="#{moviesentity.sorszam}" rendered="#{moviesentity.id != moviesView.editedMovie.id}"/>
+                        <p:inputText value="#{moviesView.editedMovie.sorszam}" size="13" rendered="#{moviesentity.id == moviesView.editedMovie.id}"/>
+                    </p:column>
+
+                    <p:column filterBy="#{moviesentity.status}" headerText="Státusz">
+                        <h:outputText value="#{moviesentity.status}" rendered="#{moviesentity.id != moviesView.editedMovie.id}"/>
+
+                        <p:selectOneMenu value="#{moviesView.editedMovie.status}" size="13" rendered="#{moviesentity.id == moviesView.editedMovie.id}">
+                            <f:selectItem itemLabel="Elérhető" itemValue="Elérhető" />
+                            <f:selectItem itemLabel="Selejtezett" itemValue="Selejtezett" />
+                        </p:selectOneMenu>
+                    </p:column>
+
+                    <p:column filterBy="#{moviesentity.tipus}" headerText="Típus">
+                        <h:outputText value="#{moviesentity.tipus}" rendered="#{moviesentity.id != moviesView.editedMovie.id}"/>
+                        <p:selectOneMenu value="#{moviesView.editedMovie.tipus}" size="13" rendered="#{moviesentity.id == moviesView.editedMovie.id}">
+                            <f:selectItem itemLabel="DVD" itemValue="DVD"/>
+                            <f:selectItem itemLabel="VHS" itemValue="VHS"/>
+                        </p:selectOneMenu>
+                    </p:column>
+
+
+                    <p:column headerText="Törlés">
+                        <p:commandButton value="Töröl" rendered="#{moviesentity.status != 'Kölcsönzött' and !moviesView.moviesIsEdited}" action="#{moviesView.deleteMovie(moviesentity)}"/>
+                    </p:column>
+                    <p:column headerText="Szerkesztés">
+                        <p:commandButton id="editBtn" value="Szerkeszt" rendered="#{moviesentity.status != 'Kölcsönzött' and !moviesView.moviesIsEdited}" action="#{moviesView.selectMovieToedit(moviesentity)}"/>
+                        <p:commandButton value="Mentés" rendered="#{moviesentity.status != 'Kölcsönzött' and moviesView.moviesIsEdited and moviesentity.id == moviesView.editedMovie.id}" action="#{moviesView.saveEditedMovie}"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+</html>

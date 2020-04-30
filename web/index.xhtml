@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:body>
+   <ui:composition template="templates/common.xhtml">
+      <ui:define name="content">
+         <div>
+            <h1 style="text-align: center">Videó kölcsönző nyilvántartó rendszer</h1>  <br/>
+
+
+            <h2 style="text-align: center">Általános leírás</h2>
+            <p style="text-align: center">Egy elképzelt videó kölcsönző nyilvántartását végző szoftver előállítása a cél. A tékában videó kazettákat és DVD-ket lehet kölcsönözni regisztrált felhasználóknak.
+            </p>
+            <p style="text-align: center">
+               Az alkalmazást a téka vezetője használja, hogy regisztrálja, és ellenőrizze az ügyfelek kölcsönzéseit. Az alkalmazásnak nem célja a kölcsönzési és késedelmi díjak kimutatása.
+            </p>
+            <br/>
+
+            <h2 style="text-align: center">Felhasználási esetek</h2>
+            <p  style="text-align: center">Ügyfelek nyilvántartása A rendszer nyilvántartja a téka kölcsönzőit (ügyfelek). Új ügyfelek felvételénél a rendszer bekéri a nevet, telefonszámot, személyigazolvány számot, lakcímet.
+            </p>
+            <p  style="text-align: center">A regisztrálás után a rendszer egyedi azonosítóval látja el az ügyfeleket. A felvett ügyfelek listájában lehet keresni név, személyigazolvány szám, azonosító alapján.
+            </p>
+            <p  style="text-align: center">Az ügyfelek adatait lehet módosítani, vagy az ügyfelet törölni. A törlés csak státuszváltással jár, nem fizikai törléssel.
+            </p>
+            <br/>
+
+            <h2 style="text-align: center">DVD-k, kazetták nyilvántartása</h2>
+            <p style="text-align: center">A rendszer nyilvántartja a kazetták és DVD- adatait: cím, beszerzés dátuma, sorszám, státusz (szabad, kikölcsönzött, selejtezett).
+            </p><br/>
+
+            <h2 style="text-align: center">Kölcsönzés</h2>
+            <p style="text-align: center">Amikor egy ügyfél kölcsönözni szeretne szükség van az azonosító adataira, illetve egy vagy több kazetta/DVD azonosítójára (feltételezve, hogy a polcon megtalálta azokat).
+            </p>
+            <p style="text-align: center">A rendszerben először a felhasználót kell kikeresni. Az adatlapon meg lehet nézni, hogy van-e már kikölcsönözve neki valami. Utána egyenként lehet hozzárendelni a kikeresett kazettát/DVD-t.
+            </p>
+            <br/>
+
+            <h2 style="text-align: center">DVD visszahozatala</h2>
+            <p style="text-align: center">Amikor valaki visszahoz kazettát/DVD-t, akkor azt azonosító alapján lehet felszabadítani. Az ügyintéző a sorszám alapján rákeres a kazettára, és az adatlapján visszaállíthatja szabad státuszúra, így megszűnik a kölcsönzés.
+            </p>
+            <p style="text-align: center">Az adatlapnak tartalmaznia kell, hogy mikor kölcsönözték ki a kazettát, és ki volt az, amennyiben kikölcsönzött állapotban van.
+            </p>
+            <br/>
+
+            <h2 style="text-align: center">Késések lekérdezése</h2>
+            <p style="text-align: center">A rendszer lehetőséget ad egy bizonyos idő után (pl 1 nap – konfiguráció) még mindig kikölcsönzött kazetták/DVD-k lekérdezésére.
+           </p>
+            <p style="text-align: center">A listában szerepelnie kell a kazetta és a kölcsönző adatainak is, illetve a kikölcsönzés dátumának, és a számított késésnek is.
+            </p>
+           <br/>
+         </div>
+      </ui:define>
+
+
+   </ui:composition>
+
+</h:body>
+
+
+
+</html>
